@@ -2,8 +2,7 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\Admin;
 use Tests\TestCase;
 
 class AdminTest extends TestCase
@@ -11,10 +10,30 @@ class AdminTest extends TestCase
     /**
      * A basic feature test example.
      */
-    public function test_example(): void
+    public function test_user_has_token(): void
     {
-        $response = $this->get('/');
+        $user = Admin::query()->first();
 
-        $response->assertStatus(200);
+        $response = $this->post('api/login', [
+            'email' => $user->email,
+            'password' => 'azeaze'
+        ]);
+
+        $response->assertJsonStructure([
+            'token',
+        ]);
+    }
+
+    /**
+     * A basic feature test example.
+     */
+    public function test_user_not_found(): void
+    {
+        $response = $this->post('api/login', [
+            'email' => 'fake@email.com',
+            'password' => 'azeaze'
+        ]);
+
+        $response->assertStatus(401);
     }
 }
