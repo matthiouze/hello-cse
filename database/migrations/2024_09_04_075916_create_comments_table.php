@@ -9,18 +9,25 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    public function up(): void
+    {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->text('contenu');
-            $table->unsignedBigInteger('admin_id');
-            $table->unsignedBigInteger('profile_id');
-            $table->timestamps();
-
             // Clé étrangère pour l'administrateur ayant posté le commentaire
-            $table->foreign('admin_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('admin_id')
+                ->nullable()
+                ->constrained()
+                ->onDelete('set null');
+
 
             // Clé étrangère pour le profil concerné par le commentaire
-            $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
+            $table->foreignId('profile_id')
+                ->nullable()
+                ->constrained()
+                ->onDelete('set null');
+
+            $table->text('content');
+            $table->timestamps();
         });
     }
 
