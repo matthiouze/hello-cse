@@ -20,7 +20,7 @@ class ProfileResource extends JsonResource
             'image_path' => $this->resource->image_path,
             'created_at' => $this->resource->created_at,
             'updated_at' => $this->resource->updated_at,
-            'commment' => new CommentResource($this->resource->comment),
+            'comments' => new CommentResource($this->resource->comment),
         ];
 
         if ($request->user()?->isAdmin()) {

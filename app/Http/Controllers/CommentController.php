@@ -17,7 +17,7 @@ class CommentController extends Controller
      */
     public function store(Profile $profile, CommentRequest $request): JsonResponse
     {
-        $comment = $profile->comment()->create([
+        $comment = $profile->comments()->create([
             'content' => $request->get('content'),
             'admin_id' => $request->user()->id,
         ]);

@@ -6,6 +6,7 @@ use App\Enum\Status;
 use App\Observers\ProfileObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Profile extends Model
@@ -44,10 +45,10 @@ class Profile extends Model
     }
 
     /**
-     * @return HasOne
+     * @return HasMany
      */
-    public function comment(): HasOne
+    public function comments(): HasMany
     {
-        return $this->hasOne(Comment::class);
+        return $this->hasMany(Comment::class);
     }
 }

@@ -5,8 +5,6 @@ namespace Feature;
 use App\Models\Admin;
 use App\Models\Profile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class CommentTest extends TestCase

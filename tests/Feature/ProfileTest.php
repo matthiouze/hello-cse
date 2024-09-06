@@ -29,7 +29,7 @@ class ProfileTest extends TestCase
                     'image_path',
                     'created_at',
                     'updated_at',
-                    'commment',
+                    'comments',
                 ],
             ],
         ]);
@@ -63,7 +63,7 @@ class ProfileTest extends TestCase
                 'image_path',
                 'created_at',
                 'updated_at',
-                'commment',
+                'comments',
             ],
         ]);
     }
@@ -117,7 +117,7 @@ class ProfileTest extends TestCase
                 'image_path',
                 'created_at',
                 'updated_at',
-                'commment',
+                'comments',
             ],
         ]);
     }
