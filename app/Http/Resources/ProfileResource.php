@@ -8,9 +8,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class ProfileResource extends JsonResource
 {
     /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
+     * @param Request $request
+     * @return array
      */
     public function toArray(Request $request): array
     {
@@ -20,7 +19,7 @@ class ProfileResource extends JsonResource
             'image_path' => $this->resource->image_path,
             'created_at' => $this->resource->created_at,
             'updated_at' => $this->resource->updated_at,
-      //      'commment' => CommentResource::collection($this->resource->comment),
+            'commment' => new CommentResource($this->resource->comment),
         ];
 
         if ($request->user()?->isAdmin()) {

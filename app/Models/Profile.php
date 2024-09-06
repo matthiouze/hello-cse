@@ -26,6 +26,8 @@ class Profile extends Model
 
     protected $casts = [
         'statut' => Status::class,
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     protected static function booted(): void
@@ -44,7 +46,7 @@ class Profile extends Model
     /**
      * @return HasOne
      */
-    public function comments(): HasOne
+    public function comment(): HasOne
     {
         return $this->hasOne(Comment::class);
     }

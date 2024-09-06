@@ -7,7 +7,6 @@ use App\Http\Requests\ProfileRequest;
 use App\Http\Resources\ProfileResource;
 use App\Models\Profile;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,7 +18,10 @@ class ProfileController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        return ProfileResource::collection(Profile::query()->where('status', Status::ACTIVE->value)->get());
+        return ProfileResource::collection(Profile::query()
+            ->with('comment')
+            ->where('status', Status::ACTIVE->value)
+            ->get());
     }
 
     /**
