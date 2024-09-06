@@ -17,11 +17,11 @@ class CommentController extends Controller
      */
     public function store(Profile $profile, CommentRequest $request): JsonResponse
     {
-        $comment = $profile->comments()->create([
+        $comment = $profile->comment()->create([
             'content' => $request->get('content'),
             'admin_id' => $request->user()->id,
         ]);
 
-        return response()->json(['profiles' => new CommentResource($comment), 200]);
+        return response()->json(['comment' => new CommentResource($comment), 200]);
     }
 }

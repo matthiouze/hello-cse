@@ -12,7 +12,7 @@ class AdminTest extends TestCase
      */
     public function test_user_has_token(): void
     {
-        $user = Admin::query()->first();
+        $user = Admin::factory()->isAdmin()->create();
 
         $response = $this->post('api/login', [
             'email' => $user->email,
@@ -35,5 +35,23 @@ class AdminTest extends TestCase
         ]);
 
         $response->assertStatus(401);
+    }
+
+    /**
+     * test si un user est admin
+     */
+    public function test_user_is_not_admin(): void
+    {
+        $user = Admin::factory()->create();
+
+        $response = $this->post('api/profiles', [
+            'name' => fake()->name,
+            'firstname' => fake()->firstName,
+            'image_path' => fake()->imageUrl(),
+        ], [
+            'Authorization' => 'Bearer '.$user->createToken($user->email)->plainTextToken,
+        ]);
+
+        $response->assertStatus(403);
     }
 }

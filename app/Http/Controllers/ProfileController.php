@@ -40,7 +40,7 @@ class ProfileController extends Controller
             'status' => $request->get('status')
         ]);
 
-        return response()->json(['profiles' => new ProfileResource($profile), 200]);
+        return response()->json(['profile' => new ProfileResource($profile), 200]);
     }
 
     /**
@@ -64,7 +64,7 @@ class ProfileController extends Controller
             'status' => $request->get('status')
         ]);
 
-        return response()->json(['profiles' => new ProfileResource($profile), 200]);
+        return response()->json(['profile' => new ProfileResource($profile), 200]);
     }
 
     /**
